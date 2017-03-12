@@ -2,11 +2,9 @@
 
 All these examples use *Object.assign()* for on-the-fly modifications at the time of object creation. IE was late to pick up *Object.assign()*, but there is a polyfill for it.
 
-The first two ways are, in my opinion, the best. The first doesn't use prototypes at all, and is easy to understand, at the cost of some inefficiency in memory usage. The second uses prototypes in a simple, non-magical way.
-
 ___Direct object modification___
 
-No prototypes, no "new" keyword, no delegation, no fragile classes, no worries!
+This is the simplest, clearest way. The only problem is some inefficiency in memory usage, and perhaps some slowness in object construction and garbage collection?
 
 ```javascript
 function new_animal(params) {
