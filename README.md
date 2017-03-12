@@ -4,7 +4,7 @@ All these examples use *Object.assign()* for on-the-fly modifications at the tim
 
 The first two ways are, in my opinion, probably the best (least confusing) ways to do it. The first doesn't use prototypes at all, at the cost of some inefficiency in memory usage. The second uses prototypes in a direct, non-magical way.
 
-__Simple(ish) inheritance__
+__Direct object modification__
 
 ```javascript
 function new_animal(params) {
