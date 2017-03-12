@@ -71,9 +71,8 @@ Duck.speak = function () {
 
 // ------------------------
 
-function make(base, params) {
-    var e = Object.create(base);
-    return Object.assign(e, params);
+function make(base, params) {       // Just to reduce verbiage.
+    return Object.assign(Object.create(base), params);
 }
 
 var daffy = make(Duck, {x: 5});
