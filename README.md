@@ -1,6 +1,6 @@
 # JS inheritance patterns
 
-All these examples use Object.assign() for on-the-fly modifications at the time of object creation. IE was late to pick up Object.assign(), but there is a polyfill for it.
+All these examples use *Object.assign()* for on-the-fly modifications at the time of object creation. IE was late to pick up *Object.assign()*, but there is a polyfill for it.
 
 __Simple(ish) inheritance__
 
