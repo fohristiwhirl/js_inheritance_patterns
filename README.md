@@ -7,7 +7,6 @@ __Simple(ish) inheritance__
 ```javascript
 function new_animal(params) {
     var animal = {};
-
     animal.x = 100;
     animal.y = 100;
 
