@@ -47,29 +47,29 @@ daffy.speak();
 __Object.create() based inheritance__
 
 ```javascript
-var animal = Object.create(null);
-animal.x = 100;
-animal.y = 100;
+var Animal = Object.create(null);
+Animal.x = 100;
+Animal.y = 100;
 
-animal.move = function (dx, dy) {
+Animal.move = function (dx, dy) {
     this.x += dx;
     this.y += dy;
 }
 
-animal.locate = function () {
+Animal.locate = function () {
     console.log([this.x, this.y]);
 }
 
 // ------------------------
 
-var duck = Object.create(animal);
-duck.speak = function () {
+var Duck = Object.create(animal);
+Duck.speak = function () {
     console.log("quack");
 }
 
 // ------------------------
 
-var daffy = Object.assign(Object.create(duck), {x: 5});
+var daffy = Object.assign(Object.create(Duck), {x: 5});
 daffy.move(20, 2);
 daffy.locate();
 daffy.speak();
