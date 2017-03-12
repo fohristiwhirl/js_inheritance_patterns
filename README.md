@@ -89,7 +89,7 @@ ___Old-school pseudo-classes___
 
 When *new Foo()* is called, the keyword *this* points at the new object. The hidden *[[prototype]]* property of the new object is automatically pointed at *Foo.prototype* (an ordinary object, and **not** the actual *[[prototype]]* of Foo). This object *Foo.prototype* looks like **{constructor: Foo}**, though this property is not enumerable.
 
-To make the *Duck* subclass, we make a function *Duck()* and overwrite its property *Duck.prototype* to be a new object that has its hidden *[[prototype]]* property point at *Animal.prototype*. The call to *Object.create()* makes this happen. We have to explicitly set *Duck.prototype.constructor* (though failing to do so only matters if one is actually using this property), otherwise accessing *daffy.constructor* will go up the chain to *Duck*, fail to find it, and go further up the chain to *Animal.prototype*, find it, and return the (wrong) answer, *Animal*.
+To make the *Duck* subclass, we make a function *Duck()* and overwrite its property *Duck.prototype* to be a new object that has its hidden *[[prototype]]* property point at *Animal.prototype*. The call to *Object.create()* makes this happen. We have to explicitly set *Duck.prototype.constructor*, otherwise accessing *daffy.constructor* will go up the chain to *Duck*, fail to find it, and go further up the chain to *Animal.prototype*, find it, and return the (wrong) answer, *Animal*.
 
 Anyway, the final *daffy* object has its hidden *[[prototype]]* property point at the object *Duck.prototype* (an ordinary object), which has its hidden *[[prototype]]* property point at *Animal.prototype* (an ordinary object).
 
