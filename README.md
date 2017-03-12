@@ -110,3 +110,41 @@ daffy.move(20, 2);
 daffy.locate();
 daffy.speak();
 ```
+
+__ES6 classes__
+
+```javascript
+class Animal {
+    constructor(params) {
+        this.x = 100;
+        this.y = 100;
+        Object.assign(this, params);
+    }
+    move(dx, dy) {
+        this.x += dx;
+        this.y += dy;
+    }
+    locate() {
+        console.log([this.x, this.y]);
+    }
+}
+
+// ------------------------
+
+class Duck extends Animal {
+    constructor(params) {
+        super();
+        Object.assign(this, params);
+    }
+    speak() {
+        console.log("quack");
+    }
+}
+
+// ------------------------
+
+var daffy = new Duck({x: 5});
+daffy.move(20, 2);
+daffy.locate();
+daffy.speak();
+```
