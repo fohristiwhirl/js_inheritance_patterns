@@ -6,6 +6,8 @@ The first two ways are, in my opinion, probably the best (least confusing) ways 
 
 ___Direct object modification___
 
+No prototypes, no "new" keyword, no delegation, no fragile classes, no worries!
+
 ```javascript
 function new_animal(params) {
     var animal = {};
@@ -46,9 +48,11 @@ daffy.locate();
 daffy.speak();
 ```
 
-No prototypes, no "new" keyword, no delegation, no fragile classes, no worries!
-
 ___True object-based inheritance with Object.create()___
+
+Here the prototype chain is clear and explicit, as long as you understand what *Object.create()* actually does, which is create an empty object that has its hidden *[[prototype]]* property point at the specified thing. So the hidden *[[prototype]]* of *daffy* points at *Duck*, and the hidden *[[prototype]]* of *Duck* points at *Animal*.
+
+An attempt to use a property of *daffy* will go up this chain, if necessary. Thus, calling *daffy.move()* works.
 
 ```javascript
 var Animal = Object.create(null);
@@ -83,9 +87,17 @@ daffy.locate();
 daffy.speak();
 ```
 
-Here the prototype chain is clear and explicit, as long as you understand what *Object.create()* actually does, which is create an empty object that has its hidden *[[prototype]]* property point at the specified thing.
-
 ___Old-school pseudo-classes___
+
+When *new Foo()* is called, the keyword *this* points at the new object. The hidden *[[prototype]]* property of the new object is automatically pointed at *Foo.prototype* (an ordinary object, and **not** the actual *[[prototype]]* of Foo).
+
+Thus, the final *daffy* object has its hidden *[[prototype]]* property point at the object *Duck.prototype* (an ordinary object), which has its hidden *[[prototype]]* property point at *Animal.prototype* (an ordinary object).
+
+An attempt to use a property of *daffy* will go up this chain, if necessary. Thus, calling *daffy.move()* works.
+
+We set *Duck.prototype.constructor* to point at *Duck* so that, if we try to find out the constructor of an instance like *daffy* by accessing the non-existant property *daffy.constructor*, JS searches up the prototype chain, gets to *Duck.prototype*, finds the *constructor* property there, and returns its value, *Duck*.
+
+Clear as mud.
 
 ```javascript
 function Animal(params) {
@@ -120,14 +132,6 @@ daffy.move(20, 2);
 daffy.locate();
 daffy.speak();
 ```
-
-Each time *new Foo()* is called, the function is called with *this* pointing at the new object. The hidden *[[prototype]]* property of the new object points at *Foo.prototype* (an ordinary object, and **not** the actual *[[prototype]]* of Foo).
-
-Thus, the final *daffy* object has its hidden *[[prototype]]* property point at the object *Duck.prototype* (an ordinary object), which has its hidden *[[prototype]]* property point at *Animal.prototype* (an ordinary object). An attempt to use a property of *daffy* will go up this chain, if necessary. Thus, calling *daffy.move()* works.
-
-We set *Duck.prototype.constructor* to point at *Duck* so that, if we try to find out the constructor of an instance like *daffy* by accessing the non-existant property *daffy.constructor*, JS searches up the prototype chain, gets to *Duck.prototype*, finds the *constructor* property there, and returns its value, *Duck*.
-
-Clear as mud.
 
 ___ES6 classes___
 
