@@ -2,6 +2,8 @@
 
 All these examples use *Object.assign()* for on-the-fly modifications at the time of object creation. IE was late to pick up *Object.assign()*, but there is a polyfill for it.
 
+The first two ways are, in my opinion, probably the best (least confusing) ways to do it.
+
 __Simple(ish) inheritance__
 
 ```javascript
