@@ -4,7 +4,7 @@ All these examples use *Object.assign()* for on-the-fly modifications at the tim
 
 The first two ways are, in my opinion, probably the best (least confusing) ways to do it. The first doesn't use prototypes at all, and is easy to understand, at the cost of some inefficiency in memory usage. The second uses prototypes in a simple, non-magical way.
 
-__Direct object modification__
+___Direct object modification___
 
 ```javascript
 function new_animal(params) {
@@ -46,7 +46,7 @@ daffy.locate();
 daffy.speak();
 ```
 
-__True object-based inheritance with Object.create()__
+___True object-based inheritance with Object.create()___
 
 ```javascript
 var Animal = Object.create(null);
@@ -81,7 +81,7 @@ daffy.locate();
 daffy.speak();
 ```
 
-__Old-school pseudo-classes__
+___Old-school pseudo-classes___
 
 ```javascript
 function Animal(params) {
@@ -117,7 +117,9 @@ daffy.locate();
 daffy.speak();
 ```
 
-__ES6 classes__
+This is all a bit spicy. The final *daffy* object has its hidden *[[prototype]]* property point at the object *Duck.prototype* (an ordinary object), which has its hidden *[[prototype]]* property point at *Animal.prototype* (an ordinary object). An attempt to use a property of daffy will go up this chain, if necessary.
+
+___ES6 classes___
 
 ```javascript
 class Animal {
@@ -154,3 +156,5 @@ daffy.move(20, 2);
 daffy.locate();
 daffy.speak();
 ```
+
+This is really just semantic sugar for the above pseudo-classes.
