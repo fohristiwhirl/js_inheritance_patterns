@@ -117,7 +117,7 @@ function Duck(params) {
     Animal.call(this);              // Runs Animal() with its "this" set to our "this".
     Object.assign(this, params);
 }
-Duck.prototype = Object.create(Animal.prototype);
+Duck.prototype = Object.create(Animal.prototype);   // Now Duck.prototype.[[prototype]] points at Animal.prototype
 Duck.prototype.constructor = Duck;
 Duck.prototype.speak = function () {
     console.log("quack");
