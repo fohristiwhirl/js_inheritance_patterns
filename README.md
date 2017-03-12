@@ -135,6 +135,8 @@ daffy.speak();
 
 ___ES6 classes___
 
+This is really just semantic sugar for the above pseudo-classes.
+
 ```javascript
 class Animal {
     constructor(params) {
@@ -170,5 +172,3 @@ daffy.move(20, 2);
 daffy.locate();
 daffy.speak();
 ```
-
-This is really just semantic sugar for the above pseudo-classes.
