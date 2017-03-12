@@ -87,13 +87,13 @@ daffy.speak();
 
 ___Old-school pseudo-classes___
 
-When *new Foo()* is called, the keyword *this* points at the new object. The hidden *[[prototype]]* property of the new object is automatically pointed at *Foo.prototype* (an ordinary object, and **not** the actual *[[prototype]]* of Foo).
+When *new Foo()* is called, the keyword *this* points at the new object. The hidden *[[prototype]]* property of the new object is automatically pointed at *Foo.prototype* (an ordinary object, and **not** the actual *[[prototype]]* of Foo). This object *Foo.prototype* looks like **{constructor: Foo}**, though this property is not enumerable.
 
-Thus, the final *daffy* object has its hidden *[[prototype]]* property point at the object *Duck.prototype* (an ordinary object), which has its hidden *[[prototype]]* property point at *Animal.prototype* (an ordinary object).
+To make the *Duck* subclass, we make a function *Duck()* and overwrite its property *Duck.prototype* to be a new object that has its hidden *[[prototype]]* property point at *Animal.prototype*. The call to *Object.create()* makes this happen. We have to explicitly set *Duck.prototype.constructor* (though failing to do so only matters if one is actually using this property), otherwise accessing *daffy.constructor* will go up the chain to *Duck*, fail to find it, and go further up the chain to *Animal.prototype*, find it, and return the (wrong) answer, *Animal*.
+
+Anyway, the final *daffy* object has its hidden *[[prototype]]* property point at the object *Duck.prototype* (an ordinary object), which has its hidden *[[prototype]]* property point at *Animal.prototype* (an ordinary object).
 
 An attempt to use a property of *daffy* will go up this chain, if necessary. Thus, calling *daffy.move()* works.
-
-We set *Duck.prototype.constructor* to point at *Duck* so that, if we try to find out the constructor of an instance like *daffy* by accessing the non-existant property *daffy.constructor*, JS searches up the prototype chain, gets to *Duck.prototype*, finds the *constructor* property there, and returns its value, *Duck*.
 
 Clear as mud.
 
@@ -114,7 +114,7 @@ Animal.prototype.locate = function () {
 // ------------------------
 
 function Duck(params) {
-    Animal.call(this);
+    Animal.call(this);              // Runs Animal() with its "this" set to our "this".
     Object.assign(this, params);
 }
 Duck.prototype = Object.create(Animal.prototype);
