@@ -62,14 +62,19 @@ Animal.locate = function () {
 
 // ------------------------
 
-var Duck = Object.create(animal);
+var Duck = Object.create(Animal);
 Duck.speak = function () {
     console.log("quack");
 }
 
 // ------------------------
 
-var daffy = Object.assign(Object.create(Duck), {x: 5});
+function make(base, params) {
+    var e = Object.create(base);
+    return Object.assign(e, params);
+}
+
+var daffy = make(Duck, {x: 5});
 daffy.move(20, 2);
 daffy.locate();
 daffy.speak();
