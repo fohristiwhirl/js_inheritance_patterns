@@ -2,7 +2,7 @@
 
 All these examples use *Object.assign()* for on-the-fly modifications at the time of object creation. IE was late to pick up *Object.assign()*, but there is a polyfill for it.
 
-The first two ways are, in my opinion, probably the best (least confusing) ways to do it. The first doesn't use prototypes at all, at the cost of some inefficiency in memory usage. The second uses prototypes in a direct, non-magical way.
+The first two ways are, in my opinion, probably the best (least confusing) ways to do it. The first doesn't use prototypes at all, and is easy to understand, at the cost of some inefficiency in memory usage. The second uses prototypes in a simple, non-magical way.
 
 __Direct object modification__
 
