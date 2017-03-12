@@ -46,7 +46,7 @@ daffy.locate();
 daffy.speak();
 ```
 
-__Object.create() based inheritance__
+__True object-based inheritance with Object.create()__
 
 ```javascript
 var Animal = Object.create(null);
@@ -82,7 +82,7 @@ daffy.locate();
 daffy.speak();
 ```
 
-__Old-school "new" keyword__
+__Old-school pseudo-classes__
 
 ```javascript
 function Animal(params) {
