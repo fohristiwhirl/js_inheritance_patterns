@@ -133,7 +133,7 @@ daffy.speak();
 
 ___ES6 classes___
 
-This is really just semantic sugar for the above pseudo-classes.
+This is really just syntactic sugar for the above pseudo-classes.
 
 ```javascript
 class Animal {
